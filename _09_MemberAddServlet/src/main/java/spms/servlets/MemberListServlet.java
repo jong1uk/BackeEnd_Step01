@@ -33,22 +33,13 @@ public class MemberListServlet extends GenericServlet{
 				"study",
 				"study");
 		stmt = conn.createStatement();
-		rs = stmt.executeQuery("select mno, mname, email, cre_date"
+		rs = stmt.executeQuery("Select mno, mname, email, cre_date"
 				+ " from members"
 				+ " order by mno asc");
 		res.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = res.getWriter();		
 		out.println("<html><head><title>회원 목록</title></head>");
 		out.println("<body><h1>회원목록</h1>");
-		/*신규 회원 추가*/
-		/*
-		 * href = '/add' = 절대 경로
-		 * localhost:9999/<contextRoot>/add
-		 * 
-		 * href = 'add' = 상대 경로
-		 * localhost:9999/<contextRoot>/member/add 
-		 * */
-		out.println("<p><a href='add'>신규 회원</a></p>");
 		while(rs.next()) {
 			out.println(
 						rs.getInt("mno")+ ", " +
@@ -62,8 +53,6 @@ public class MemberListServlet extends GenericServlet{
 	}catch(Exception e) {
 		throw new ServletException(e);
 	}finally {
-		
-		
 		//생성한 역순으로 닫아준다.
 		try {if(rs!=null) rs.close();} catch(Exception e) {}
 		try {if(stmt!=null) stmt.close();} catch(Exception e) {}
