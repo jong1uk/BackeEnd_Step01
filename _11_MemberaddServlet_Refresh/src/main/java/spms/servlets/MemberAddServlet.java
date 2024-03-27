@@ -38,17 +38,6 @@ public class MemberAddServlet extends HttpServlet{
 		
 		req.setCharacterEncoding("UTF-8");
 		Connection conn = null;
-		/* staement
-		 * - 질의할 때마다 sql을 컴파일한다.
-		 * - 입력 매개변수가 여러 개 필요할 때 문자열 결합연산자인 +를 이용해서 해야한다.
-		 * - 전송 직전에 sql문을 입력받고, 컴파일 후, 서버로 전송
-		 * 
-		 * PrepareStatement
-		 * - sql문을 미리 입력하여 컴파일한 상태에서 객체를 받는다.
-		 * - 만약에 sql문 구조가 변경되지 않고, 파라미터값만 바뀌는 경우 statement보다 빠르다.
-		 * - 입력 매개변수가 여러 개 필요할 때 ? 로 sql의 파라미터를 표시하고 나중에 전달하므로 편리함.
-		 * - Statement < PrepareStatement
-		 * */
 		PreparedStatement stmt = null;
 		
 		try {
@@ -70,9 +59,18 @@ public class MemberAddServlet extends HttpServlet{
 			resp.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = resp.getWriter();
 			out.println("<html><head><title>회원등록결과</title></head>");
+			out.println("<meta http-equiv='Refresh' content='2;url=list'>");
 			out.println("<body>");
 			out.println("<p>등록 성공입니다</p>");
 			out.println("</body></html>");
+			// 1초 후에 해당 경로로 리다이렉트
+			
+			//Refresh 대신 Redirect를 사용
+			
+			//
+			resp.sendRedirect("list");
+			
+//			resp.addHeader("Refresh", "2;url=list");
 		}catch(Exception e) {
 			throw new ServletException(e);
 		}finally {
