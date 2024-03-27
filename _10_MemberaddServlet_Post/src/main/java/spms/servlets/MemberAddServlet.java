@@ -33,6 +33,10 @@ public class MemberAddServlet extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		// get요청은 소스에 하지 않고, tomcat의 server.xml에 해야함 
+		
+		req.setCharacterEncoding("UTF-8");
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		

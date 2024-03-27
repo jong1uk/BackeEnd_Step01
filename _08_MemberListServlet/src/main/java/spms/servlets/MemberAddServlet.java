@@ -28,7 +28,6 @@ public class MemberAddServlet extends HttpServlet{
 			out.println("</form>");
 			out.println("</body></html>");
 			
-			connection conn = null;
 			
 			
 	}
